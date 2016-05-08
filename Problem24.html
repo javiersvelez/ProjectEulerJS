@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 24</h1>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+    var PERM = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    var count = 0;
+
+
+    do {
+        count++;
+
+        //log( count + ": " + concatArray(PERM));
+        if (count == 1000000) {
+            log(+ count + "th permutation: " + concatArray(PERM));
+            break;
+        }
+
+        //Find k
+        var k = undefined;
+
+        for (var i = 0; i < PERM.length; i++) {
+            if (PERM[i] < PERM[i + 1])
+                k = i;
+        }
+
+        //Find l
+        var l = undefined;
+
+        for (var i = 0; i < PERM.length; i++) {
+            if (PERM[k] < PERM[i])
+                l = i;
+        }
+
+
+        //Swap PERM[k] with PERM[l]
+        var temp = PERM[k];
+        PERM[k] = PERM[l];
+        PERM[l] = temp;
+
+        //Inverse remaining sequence.
+        size = PERM.length - k;
+        size = Math.floor(size / 2);
+
+        for (var j = 0; j < size; j++) {
+            var temp = PERM[PERM.length - 1 - j];
+            PERM[PERM.length - 1 - j] = PERM[k + 1 + j];
+            PERM[k + 1 + j] = temp;
+
+        }
+        
+        var x = 0;
+
+    } while (k != undefined);
+
+
+    
+    function concatArray(arr) {
+        var s = "";
+        for (var i = 0; i < arr.length; i++) {
+            s += arr[i];
+        }
+        return s;
+    }
+</script>
+
+</html>

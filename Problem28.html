@@ -1,0 +1,169 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 28</h1>
+    <div id="arraySpace"></div>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+    //Create empty Matrix
+    var _SIZE = 1001;
+    var matrix = new Array();
+    for (var i = 0; i < _SIZE; i++) {
+        var arr = new Array();
+        for (var j = 0; j < _SIZE; j++) {
+            arr[j] = '0';
+        }
+        matrix[i] = arr;
+    }
+
+    var middle = Math.floor(_SIZE / 2);
+    //matrix[0][_SIZE - 1] = _SIZE * _SIZE;
+    matrix[middle][middle] = 1;
+
+    var _ci = middle;
+    var _cj = middle;
+
+    var movements = _SIZE * _SIZE;
+    var rep = 1;
+
+    var counter = 1;
+    var str = ""
+
+    while (counter <= movements - 1) {
+
+        for (var a = 1; a < 5; a++) {
+            if (a == 3) {
+                rep++;
+            }
+            //log("Im going to write a " + map(a) + " " + rep + " times");
+            for (var i = 0; i < rep; i++) {
+                if (counter < movements) {
+                    makeMove(a);
+                    str += map(a);
+                    counter++;
+                    //log("movements: " + movements + " counter: " + counter);
+                    //console.log(genString(matrix));
+                }
+            }
+        }
+        rep++;
+    }
+    //Takes a while to print...
+    //console.log(genString(matrix));
+
+    //Diagonal 1
+    var sum1 = 0;
+    _i = 0;
+    _j = 0;
+
+    for (var i = 0; i < _SIZE; i++) {
+
+        sum1 += matrix[_i][_j];
+        _i++;
+        _j++;
+
+    }
+
+    //Diagonal 2
+    var sum2 = 0;
+
+    _i = _SIZE - 1;
+    _j = 0;
+
+    for (var i = 0; i < _SIZE; i++) {
+
+        sum2 += matrix[_i][_j];
+        _i--;
+        _j++;
+
+    }
+
+    var SUM = sum1 + sum2 - 1;
+
+    console.log("SUM: " + SUM);
+
+    function makeMove(type) {
+        switch (type) {
+        case 1:
+            goRight(_ci, _cj);
+            break;
+        case 2:
+            goDown(_ci, _cj);
+            break;
+        case 3:
+            goLeft(_ci, _cj);
+            break;
+        case 4:
+            goUp(_ci, _cj);
+            break;
+        }
+    }
+
+    function goUp(i, j) {
+        matrix[i - 1][j] = parseInt(matrix[i][j] + 1);
+        _ci = i - 1;
+        _cj = j;
+    }
+
+    function goDown(i, j) {
+        matrix[i + 1][j] = parseInt(matrix[i][j] + 1);
+        _ci = i + 1;
+        _cj = j;
+    }
+
+    function goRight(i, j) {
+        matrix[i][j + 1] = parseInt(matrix[i][j] + 1);
+        _ci = i;
+        _cj = j + 1;
+    }
+
+    function goLeft(i, j) {
+        matrix[i][j - 1] = parseInt(matrix[i][j] + 1);
+        _ci = i;
+        _cj = j - 1;
+    }
+
+    function genString(array) {
+        var str = "";
+
+        for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < array[i].length; j++) {
+                str += array[i][j] + "\t";
+            }
+            str += "\n";
+        }
+
+        return str;
+    }
+
+    function map(n) {
+        switch (n) {
+        case 1:
+            return " R";
+            break;
+        case 2:
+            return " D";
+            break;
+        case 3:
+            return " L";
+            break;
+        case 4:
+            return " U";
+            break;
+        }
+    }
+</script>
+
+</html>

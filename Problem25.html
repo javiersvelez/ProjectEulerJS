@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 25*</h1>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+    var once = true;
+
+    //Varies for each JS implementation
+    var _MAXNUM = 9007199254740992;
+    var limit = _MAXNUM / 2;
+    var digits = 1;
+    var term = 1;
+    var termCount = 0;
+    var maxDigits = 0;
+    var last = 0;
+    var neu = 1;
+
+    log("fib(" + term + ")=" + neu + " " + digits + " digits");
+
+    do {
+        if (neu < limit) {
+            var temp = neu;
+            neu = neu + last;
+            last = temp;
+
+        } else {
+            if (once) {
+                log("-----LIMIT PASSED---- for term: " + term);
+                once = false;
+            }
+            var temp = "" + neu;
+            neu = sumAsMatrix("" + neu, "" + last);
+            last = "" + temp;
+        }
+
+        term++;
+        termCount++;
+
+        var numDigits = digitsCount(neu);
+
+        if (numDigits > digits) {
+            digits = numDigits;
+
+            log("Reached:  " + digits + " digits  " + term + "th term");
+            termCount = 0;
+        }
+
+        //log("fib(" + term + ")=" + neu + " " + digits + " digits");
+
+
+        if (digits == 1000) {
+            log("STOP");
+            log("The Term is: " + term);
+            break;
+        }
+
+    } while (digits < 1002);
+
+
+
+    function digitsCount(num) {
+        num = "" + num;
+        return num.length;
+    }
+
+
+
+    function sumAsMatrix() {
+
+        var matrix = [];
+        for (var i = 0; i < arguments.length; i++) {
+            LIMIT = 999;
+            var size = 1000;
+
+            var arg = "" + arguments[i];
+            var arr = new Array();
+
+            var leng = arg.length;
+            for (var j = 0; j < leng; j++) {
+                arr[LIMIT - j] = +arg[leng - 1 - j];
+
+            }
+            matrix.push(arr);
+
+        }
+        return largeSum(matrix);
+    }
+
+
+    //Sums all the rows of a given Matrix (or Array of Arrays), In which each element of each row is a digit of the large number.
+    function largeSum(numbers) {
+
+        var column = numbers[0].length - 1;
+
+        var SUM = ""
+        var rest = 0;
+
+        for (column; column >= 0; column--) {
+            var columnSum = 0;
+            for (var i = 0; i < numbers.length; i++) {
+
+                var n = numbers[i][column];
+                if (n) {
+                    columnSum += parseInt(n);
+                }
+            }
+            columnSum += rest;
+
+            var sumStr = String(columnSum);
+            var digit = sumStr.slice(-1);
+            var reststr = sumStr.slice(0, sumStr.length - 1);
+            if (reststr == "")
+                rest = 0;
+            else
+                rest = parseInt(reststr);
+
+            var temp = SUM;
+            //log( " SUM = " + " + " + digit + " + " + temp);
+            SUM = "" + digit + temp;
+
+
+
+        }
+
+        if (rest > 0) {
+            var temp = SUM;
+            SUM = "" + rest + temp;
+        }
+
+        var indx = 0;
+
+        SUM = SUM.replace(/^0+/, '');
+        return SUM;
+    }
+</script>
+
+</html>

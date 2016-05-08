@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 27</h1>
+</body>
+<script type="text/javascript" src="Functions.js"></script>
+<script>
+    /*This code is based on http://www.mathblog.dk/project-euler-27-quadratic-formula-primes-consecutive-values/ */
+
+    function log(args) {
+        console.log(args);
+    }
+
+    function getNumber(n, a, b) {
+        return Math.abs(n * n + a * n + b);
+    }
+
+    var bestN = 0;
+    var bestA = 0;
+    var bestB = 0;
+
+    for (var a = -1000; a < 1001; a++) {
+        for (var b = -1000; b < 1001; b++) {
+            var n = 0;
+            while (isPrime(getNumber(n, a, b))) {
+                n++;
+                if (n > bestN) {
+                    bestN = n;
+                    bestA = a;
+                    bestB = b;
+
+                }
+            }
+        }
+
+    }
+
+    console.log("Count: " + bestN + " a: " + bestA + " b: " + bestB + " Product: " + bestA * bestB);
+</script>
+
+</html>

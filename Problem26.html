@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 26
+		</h1>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+    var _LIMIT = 1000;
+
+    var maxLeng = 0;
+    var maxD = 0;
+
+    for (var d = 1; d < 1000; d++) {
+        //log("1/" + d );
+        //log( d + ":  " + getCycleLeng(d));
+        var count = getCycleLeng(d);
+        if (count > maxLeng) {
+            maxD = d;
+            maxLeng = count;
+        }
+
+    }
+
+    log("The maximum recurring cycle is: " + maxLeng + "  on 1/" + maxD);
+
+    function getCycleLeng(divisor) {
+        var dividend = 1;
+        var limit = _LIMIT;
+        var quotient, remainder;
+        var result = "";
+        var count = 0;
+        var arr = [];
+
+
+
+        for (var i = 0; i < limit; i++) {
+            quotient = parseInt(dividend / divisor);
+            result += quotient;
+            remainder = dividend - quotient * divisor;
+
+            remainder *= 10;
+            dividend = remainder;
+
+            if (arr.indexOf(remainder) > -1) {
+
+
+            } else {
+                arr.push(remainder);
+                count++;
+            }
+        }
+        //log(arr + "");
+
+        return count;
+        //log(divisor + "  " +  arr);
+    } //f
+</script>
+
+</html>
