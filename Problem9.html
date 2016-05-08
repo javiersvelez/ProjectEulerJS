@@ -1,0 +1,32 @@
+<html>
+	<body>
+		<h1>Problem 9</h1>
+	</body>
+	<script>
+		console.log("Starting...");
+		for (var a = 1; a < 900; a++) {
+			for (var b = 1; b < 900; b++) {
+				for (var c = 1; c < 900; c++) {
+					//console.log( "Calculating: " + a + " " + b + " " + c);
+
+					var sum = a + b + c;
+					if (a < b && b < c) {
+						if (sum == 1000) {
+							//console.log("Calculating: " + a + " " + b + " " + c);
+							var cats = Math.pow(a, 2) + Math.pow(b, 2);
+							var hip = Math.pow(c, 2);
+							if (cats == hip) {
+								console.log("The Numbers are: " + a + " " + b + " " + c);
+								console.log("The product is " + a * b * c);
+								break;
+							}
+						}
+					}
+
+				}
+			}
+		}
+
+	</script>
+</html>
+

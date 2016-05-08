@@ -1,0 +1,53 @@
+<html>
+	<body>
+		<h1>Problem 14</h1>
+
+	</body>
+	<script>
+		/*
+		 n  n/2 (n is even)
+		 n  3n + 1 (n is odd)
+		 */
+
+		var theNumber = undefined;
+		var maxChain = 0;
+
+		for (var i = 1; i < 1000000; i++) {
+			//console.log("START:");
+			//console.log(i);
+
+			var n = i;
+			var counter = 1;
+			while (n > 1) {
+
+				counter++;
+
+				
+
+				if (n % 2 == 0) {
+
+					n = n / 2;
+					//console.log(n);
+				} else {
+
+					n = (3 * n) + 1;
+					//console.log(n);
+				}
+			}
+
+			//console.log("Length: " + counter);
+
+			if (counter > maxChain) {
+				theNumber = i;
+				maxChain = counter;
+				console.log("New max chain: " + maxChain + "  Number: " + theNumber);
+			}
+
+		}
+
+		console.log("");
+		console.log("The starting number is: " + theNumber);
+
+	</script>
+</html>
+

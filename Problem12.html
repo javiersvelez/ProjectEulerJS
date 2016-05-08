@@ -1,0 +1,52 @@
+<html>
+	<body>
+		<h1>Problem 12</h1>
+	</body>
+	<script>
+		var num = 0;
+		var firstNumber = undefined;
+		var numbers = new Array();
+		var finish = false;
+		var i = 1;
+		var divisors = 0;
+		var maxDivisors = 0;
+
+		console.log("Computing . . .");
+		while (i < 50000) {
+			//lastNum = num;
+			num = num + i;
+			//numbers.push(num);
+
+			divisors = countDivisors(num);
+			if (divisors > maxDivisors) {
+				maxDivisors = divisors;
+				console.log("New Max: " + maxDivisors + " Num: " + num);
+
+				if (divisors > 500) {
+					console.log("The First Number to have above 500 divisors is: " + num);
+					break;
+				}
+			}
+
+			i++
+
+		}
+		//console.log(numbers);
+
+		function countDivisors(num) {
+			var numberOfDivisors = 1;
+			for (var i = 2; i <= num; i++) {
+				var exponent = 0;
+				while (num % i == 0) {
+					exponent++;
+					num /= i;
+				}
+				numberOfDivisors *= (exponent + 1);
+			}
+
+			return numberOfDivisors
+		}
+
+	</script>
+</html>
+

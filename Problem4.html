@@ -1,0 +1,95 @@
+<html>
+	<script>
+		console.log("Problem 4");
+		console.log("");
+		
+		var alternate = false;
+		var largest = 0;
+		var productS = "";
+		var maxi = 0;
+		var maxj = 0;
+		
+		for(var i = 100; i<1000; i++){
+			for (var j = 100; j<1000; j++){
+				var product = i*j;
+				if (isPalindrome(product)){
+					if (product > largest){
+						maxi = i;
+						maxj = j;
+						largest = product;
+					}
+					
+				}
+			}
+		}
+		
+		console.log ("Product: " + maxi + " x " + maxj);
+		console.log("Largest Palindrome: " + largest);
+		
+
+			
+		function isPalindrome(number) {
+
+			var odd = false;
+			var nString = number.toString();
+			var leng = nString.length;
+
+			if (leng == 1) {
+                //all single digit numbers are palindrome
+				return true;
+			}
+
+			var str1 = "";
+			var str2 = "";
+
+			var middle = middle = Math.floor(leng / 2);
+
+			if ((leng % 2) != 0) {
+				odd = true;
+			}
+			
+			var once = false;
+
+			for (var i = 0; i < leng; i++) {
+
+				if (odd) {
+					if (i <= middle) {
+						str1 = str1 + nString.charAt(i);
+					} else {
+						if (!once) {
+							str2 = str2 + nString.charAt(middle);
+							once = true;
+						}
+						str2 = str2 + nString.charAt(i);
+					}
+
+				} else {
+					if (i < middle) {
+						str1 = str1 + nString.charAt(i);
+					} else {
+						str2 = str2 + nString.charAt(i);
+					}
+				}
+
+			}
+			
+			str2 = str2.split("").reverse().join("");
+			
+			if (str1 == str2){
+				//console.log ("Palindrome: " + nString);
+				return true;
+			}
+			else{
+				//console.log(nString);
+				return false;
+			}
+
+		}
+
+		function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+	</script>
+</html>
+

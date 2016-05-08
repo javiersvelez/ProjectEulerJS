@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 2</h1>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+    var previous1 = 1;
+    var previous2 = 2;
+    var newnumber = 0;
+    var sum = 2;
+
+    while(newnumber < 4000000){
+        newnumber = previous1 + previous2;
+        if (newnumber % 2 == 0)
+            sum += newnumber
+
+        previous1 = previous2
+        previous2 = newnumber;
+    }
+
+    console.log("The sum is: " + sum);
+</script>
+
+</html>

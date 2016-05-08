@@ -1,0 +1,60 @@
+<html>
+
+<body>
+    <h1>Problem 15</h1>
+</body>
+<script type="text/javascript" href="https://raw.github.com/jtobey/javascript-bignum/master/biginteger.js"></script>
+<script type="text/javascript" href="https://raw.github.com/jtobey/javascript-bignum/master/schemeNumber.js"></script>
+<script type="text/javascript">
+    
+    //We calculate the first 7 values of n, by bruteforcing the possible routes
+    for (var i = 1; i < 7; i++) {
+        var _SIZE = i;
+        var routes = new Array();
+        var routesCount = 0;
+        var maxCount = 0;
+        var route = "";
+        var movements = _SIZE * 2;
+
+
+        for (var n = 0; n < 10000; n++) {
+            route = "";
+            movements = _SIZE * 2;
+            var rights = _SIZE;
+            var downs = _SIZE;
+            
+            while (movements > 0) {
+                var rand = Math.random();
+                if (rand <= 0.5) {
+                    if (rights > 0) {
+                        route += "R";
+                        rights--;
+                        movements--;
+                    }
+                } else {
+                    if (downs > 0) {
+                        route += "D";
+                        downs--;
+                        movements--;
+                    }
+                }
+            } //while movements
+            //If route is not already registered
+            if (routes.indexOf(route) == -1) {
+                //console.log("pushing..." + route);
+                routes.push(route);
+                routesCount++;
+            }
+            if (routesCount > maxCount) {
+                maxCount = routesCount;
+                console.log("New Max: " + maxCount);
+
+            }
+        }//for n
+    }
+
+    //We find that the number of combinations of any given n obey the following rule:
+    //(2*n)!/(n!)^2
+</script>
+
+</html>
