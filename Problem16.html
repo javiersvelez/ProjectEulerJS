@@ -1,0 +1,81 @@
+<html>
+	<head>
+	</head>
+
+	<body>
+		<h1>Problem 16</h1>
+		<script type="text/javascript">
+			var current = 2;
+
+			for (var i = 1; i < 1000; i++) {
+				//console.log(current);
+				var numbers = new Array();
+				insertToMatrix(current, numbers);
+				insertToMatrix(current, numbers);
+				current = largeSum(numbers);
+
+			}
+
+			var power = current;
+
+			console.log("2^1000 = " + power);
+			console.log("Sum: " + sumHorizontally(power));
+
+			function insertToMatrix(number, array) {
+				var stringNum = "" + number;
+				var temp = new Array();
+				for (var j = 0; j < stringNum.length; j++) {
+					var number = parseInt(stringNum.charAt(j))
+					temp.push(number);
+				}
+				array.push(temp);
+			}
+
+			//Sums all the rows of a given Matrix (or Array of Arrays), In which each element of each row is a digit of the large number.
+			function largeSum(numbers) {
+				var column = numbers[0].length - 1;
+				var SUM = ""
+				var rest = 0;
+
+				for (column; column >= 0; column--) {
+					var columnSum = 0;
+					for (var i = 0; i < numbers.length; i++) {
+						columnSum += numbers[i][column];
+
+					}
+					columnSum += rest;
+
+					var sumStr = String(columnSum);
+					var digit = sumStr.slice(-1);
+					var reststr = sumStr.slice(0, sumStr.length - 1);
+					if (reststr == "")
+						rest = 0;
+					else
+						rest = parseInt(reststr);
+
+					var temp = SUM;
+					SUM = "" + digit + temp;
+
+				}
+
+				if (rest > 0) {
+					var temp = SUM;
+					SUM = "" + rest + temp;
+				}
+
+				return SUM;
+			}
+
+			//Sums all the digits of a given number, passed as a String
+			function sumHorizontally(stringNumber) {
+				var sum = 0;
+				for (var i = 0; i < stringNumber.length; i++) {
+					sum += parseInt(stringNumber.charAt(i));
+				}
+				return sum;
+			}
+
+		</script>
+	</body>
+</html>
+

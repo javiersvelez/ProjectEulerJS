@@ -1,0 +1,105 @@
+<html>
+	<body>
+		<h1>Problem 17</h1>
+	</body>
+	<script>
+		var map = {
+			1 : "one",
+			2 : "two",
+			3 : "three",
+			4 : "four",
+			5 : "five",
+			6 : "six",
+			7 : "seven",
+			8 : "eight",
+			9 : "nine",
+			10 : "ten",
+			11 : "eleven",
+			12 : "twelve",
+			13 : "thirteen",
+			14 : "fourteen",
+			15 : "fifteen",
+			16 : "sixteen",
+			17 : "seventeen",
+			18 : "eighteen",
+			19 : "nineteen",
+			20 : "twenty"
+		}
+
+		var mapD = {
+			1 : "ten",
+			2 : "twenty",
+			3 : "thirty",
+			4 : "forty",
+			5 : "fifty",
+			6 : "sixty",
+			7 : "seventy",
+			8 : "eighty",
+			9 : "ninety",
+			100 : "hundred",
+			1000 : "thousand"
+		};
+
+		var finalString = "";
+
+		for (var i = 1; i < 1000; i++) {
+			var number = "";
+			var strNum = "" + i;
+
+			if (i < 21) {
+				number = map[i];
+
+			} else {
+				var units = parseInt(strNum.slice(-1));
+				var decs = parseInt(strNum.charAt(strNum.length - 2));
+				var cents = 0;
+				if (strNum.length - 3 >= 0)
+					cents = parseInt(strNum.charAt(strNum.length - 3));
+
+				//console.log("" + cents + decs + units);
+
+				if (cents == 0) {
+					if (units == 0) {
+						number = mapD[decs];
+					} else {
+						number = "" + mapD[decs] + "-" + map[units];
+					}
+				} else {
+					if (units == 0) {
+						if (decs == 0) {
+							number = "" + map[cents] + " hundred";
+						} else {
+							number = "" + map[cents] + "hundred and " + mapD[decs];
+						}
+					} else {
+						if (decs == 0) {
+							number = number = "" + map[cents] + "hundred and " + map[units];
+						} else {
+							if (decs == 1) {
+								var t = parseInt("" + decs + units);
+								number = number = "" + map[cents] + "hundred and " + map[t];
+							} else {
+								number = number = "" + map[cents] + "hundred and " + mapD[decs] + "-" + map[units];
+							}
+						}
+					}
+
+				}
+
+			}
+			finalString += number;
+			//console.log(number);
+
+		}
+
+		finalString += "one thousand";
+		finalString = finalString.replace(/\s+/g, '');
+		finalString = finalString.replace(/-/g, '');
+		console.log(finalString);
+
+		console.log("");
+		console.log("Number of letters used: " + finalString.length);
+
+	</script>
+</html>
+

@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 21</h1>
+</body>
+<script>
+    function log(args) {
+        console.log(args);
+    }
+
+
+
+
+    var arr = new Array();
+
+    Divisor = function (number, sum) {
+        this.number = number;
+        this.sum = sum;
+        this.hash = "";
+    }
+
+
+    var hashs = new Array();
+
+    for (var i = 1; i < 10000; i++) {
+        var sum = sumOfDivisors(i);
+        var d = new Divisor(i, sum);
+
+        if (i < sum) {
+            d.hash = "" + i + "&" + sum;
+        } else {
+            d.hash = "" + sum + "&" + i
+        }
+
+        hashs.push(d.hash);
+        //log(i + "\tHash: " + d.hash);
+
+    }
+
+
+    var sorted_hash = hashs.sort();
+
+    var results = new Array();
+    for (var i = 0; i < hashs.length - 1; i++) {
+        if (sorted_hash[i + 1] == sorted_hash[i]) {
+            results.push(sorted_hash[i]);
+        }
+    }
+
+    log("Amicable Numbers: " + results);
+
+
+    var SUM = 0;
+    for (var i = 0; i < results.length; i++) {
+
+        var t = results[i].split("&");
+        SUM += parseInt(t[0]);
+        SUM += parseInt(t[1]);
+
+
+
+    }
+
+    log("The Sum is:  " + SUM);
+
+
+    function sumOfDivisors(num) {
+        var sum = 0;
+        //log("  DIVISORS FOR: " + num);
+        for (var i = 1; i < num; i++) {
+
+
+            if (num % i == 0) {
+                //log(i);
+                sum += i;
+            }
+        }
+
+        return sum;
+    }
+</script>
+
+</html>

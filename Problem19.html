@@ -1,0 +1,183 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 19<h1>
+</body>
+<script>
+    
+
+function log(arg){console.log(arg);}
+
+var YEAR = 1900;
+
+var sundays = 0;
+var day = 1;
+
+
+
+
+for (var i = 1900; i < 2001; i++){
+
+	for (var m = 1; m < 13; m++){
+		daysInMonth = getDaysForMonth(m);
+		for (var d= 1; d < daysInMonth + 1; d++){
+			if(day > 7) day = 1;
+			if (i >= 1901){
+				if (d == 1 && day == 7){
+					sundays++;
+				}
+			}
+			//log(mapDay(day) + " " + d + " " + mapMonth(m) + " " + i );
+			day++;
+		}
+	}
+}
+
+
+log ("There was " + sundays + " Sundays");
+
+
+function isLeap(y){
+
+   if (y % 400 == 0){
+		return true;
+   }
+   else if (y % 100 == 0){
+		return false;
+   }
+   else if (y % 4 == 0){
+		return true;
+   }
+   else{
+	return false;
+   }
+
+}
+
+
+
+
+function getDaysForMonth(m, y){
+	var days = undefined;
+	switch(m){
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			days = 30;
+		break;
+		case 2:
+			if (isLeap(y)){
+				days = 29;
+			}
+			else{
+				days = 28;
+			}
+			
+		break;
+		
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+		
+			days = 31;
+		break;
+			
+	}
+	return days;
+}
+
+
+
+function mapDay(d){
+var day = "";
+
+	switch(d){
+		case 1:
+			day = "Monday";
+		break;
+		case 2:
+			day = "Tuesday";
+		break;
+		case 3:
+			day = "Wednesday";
+		break;
+		case 4:
+			day = "Thursday";
+		break;
+		case 5:
+			day = "Friday";
+		break;
+		case 6:
+			day = "Saturday";
+		break;
+		case 7:
+			day = "Sunday";
+		break;
+		
+	}
+	
+	return day;
+	
+}
+
+
+function mapMonth(m){
+var month = "";
+
+	switch(m){
+		case 1:
+			month = "January";
+		break;
+		case 2:
+			month = "February";
+		break;
+		case 3:
+			month = "March";
+		break;
+		case 4:
+			month = "April";
+		break;
+		case 5:
+			month = "May";
+		break;
+		case 6:
+			month = "June";
+		break;
+		case 7:
+			month = "July";
+		break;
+		case 8:
+			month = "August";
+		break;
+		case 9:
+			month = "September";
+		break;
+		case 10:
+			month = "October";
+		break;
+		case 11:
+			month = "November";
+		break;
+		case 12:
+			month = "December";
+		break;	
+		
+	}
+	return month;
+}
+
+</script>
+</html>

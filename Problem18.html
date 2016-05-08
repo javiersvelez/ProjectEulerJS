@@ -1,0 +1,116 @@
+<html>
+<head>
+<style>body{font-family:Arial;}</style>
+</head>
+
+<body>
+<h1>Problem 18<h1>
+</body>
+<script>
+    
+/* Note: this solution was inspired on the solution proposed by Kristian Edlund  on http://www.mathblog.dk */    
+    
+function log(arg){console.log(arg);}
+
+_NUMROWS = 15;
+
+var s = "75 \
+95 64 \
+17 47 82 \
+18 35 87 10 \
+20 04 82 47 65 \
+19 01 23 75 03 34 \
+88 02 77 73 07 63 67 \
+99 65 04 28 06 16 70 92 \
+41 41 26 56 83 40 80 70 33 \
+41 48 72 33 47 32 37 16 94 29 \
+53 71 44 65 25 43 91 52 97 51 14 \
+70 11 33 28 77 73 17 78 39 68 17 57 \
+91 71 52 38 17 14 91 43 58 50 27 29 48 \
+63 66 04 68 89 53 67 30 73 16 69 87 40 31 \
+04 62 98 27 23 09 70 98 73 93 38 53 60 04 23";
+
+var arr = s.split(" ");
+
+log(arr);
+
+for (var i = 0; i < arr.length; i++){
+	arr[i] = parseInt(arr[i]);
+}
+
+
+var matrix = new Array();
+
+for (var i = 0; i < _NUMROWS; i++){
+	var arr2 = new Array();
+	for (var j = 0; j < _NUMROWS; j++){
+		arr2[j] = 0;
+	}
+	matrix[i] = arr2;
+}
+
+
+
+var indx = 0;
+
+for (var i = 0; i < _NUMROWS; i++){
+	numsPerRow = i+1;
+	for (var j = 0; j < numsPerRow; j++){
+		matrix[i][j] = arr[indx];
+		indx++;
+	}
+}
+
+
+//Algorithm
+
+var currentRow = _NUMROWS - 2;
+var tempSum = 0;
+var bestSum = 0;
+
+
+for (var i = currentRow; i >= 0; i-- ){
+	numsPerRow = currentRow + 1;
+	var s = "Row" + i + ": ";
+	for (var j = 0; j < numsPerRow; j++){
+		matrix[i][j] = getBestSum(i,j);
+		tempSum = matrix[i][j];
+		if(tempSum > bestSum)
+			bestSum = tempSum;
+		s+= matrix[i][j] + " ";
+	}
+	
+	//log(s);
+	
+}
+
+
+log("The largerst sum possible is: " + bestSum);
+
+
+function getBestSum(row, col){
+	var number = matrix[row][col];
+	if (row < _NUMROWS){
+	
+		if (matrix[row + 1][col] >= matrix[row + 1][col + 1])
+			return  matrix[row + 1][col] + matrix[row][col];
+		else
+			return matrix[row + 1][col + 1]+ matrix[row][col];
+	}
+	else
+		return undefined;
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</html>
