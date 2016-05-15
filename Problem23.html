@@ -21,18 +21,18 @@
 
     checkNumbers();
 
+    //Make the final sum
     var totalSum = 0;
     for (var i = 0; i < MAXIMUM; i++) {
-        //console.log(i + ": " + integers[i]);
         if (integers[i] == false){
-            //console.log("Summing..." + i);
             totalSum += i;
         }
     }
 
     console.log("The sum is: " + totalSum);
 
-
+    
+    //Check what numbers can be expressed as the sum of 2 abundant numbers
     function checkNumbers() {
         var abundants = getAbundants(MAXIMUM);
         console.log("There are " + abundants.length + " abundant numbers");
@@ -50,7 +50,7 @@
     }
 
 
-
+    //Get an array of all abundant numbers from 0 to MAXIMUM
     function getAbundants(n) {
         var abundants = [];
         var abundantsSum = 0;
