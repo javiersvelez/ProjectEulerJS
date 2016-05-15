@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Problem 23</h1>
+</body>
+<script>
+    var MAXIMUM = 28124;
+
+    var integers = []
+    for (var i = 0; i < MAXIMUM; i++) {
+        integers[i] = false;
+    }
+
+    checkNumbers();
+
+    var totalSum = 0;
+    for (var i = 0; i < MAXIMUM; i++) {
+        //console.log(i + ": " + integers[i]);
+        if (integers[i] == false){
+            //console.log("Summing..." + i);
+            totalSum += i;
+        }
+    }
+
+    console.log("The sum is: " + totalSum);
+
+
+    function checkNumbers() {
+        var abundants = getAbundants(MAXIMUM);
+        console.log("There are " + abundants.length + " abundant numbers");
+
+        for (var i = 0; i < abundants.length; i++) {
+            for (var j = i; j < abundants.length; j++) {
+                var sum = abundants[i] + abundants[j];
+                if (sum < MAXIMUM) {
+                    integers[sum] = true;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+    function getAbundants(n) {
+        var abundants = [];
+        var abundantsSum = 0;
+        for (var i = 0; i < n; i++) {
+            if (numberType(i) == "A") {
+                abundants.push(i);
+            }
+        }
+        return abundants;
+    }
+
+    //Determine if a number is perfect, deficient, or abundant
+    function numberType(n) {
+        var sum = 0;
+        for (var i = 0; i < n; i++) {
+            if (n % i == 0) {
+                sum += i;
+                if (sum > n)
+                    return "A";
+            }
+        }
+        if (sum == n)
+            return "P";
+        else if (sum > n)
+            return "A";
+        else
+            return "D";
+    }
+</script>
+
+</html>
