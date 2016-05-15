@@ -78,7 +78,7 @@ function largeSum(numbers) {
 
 
 
-//Multiplies the given large number times the given times. Recieves number and Returns result as a String
+//Multiplies the given large number  n times. Recieves number and n times, returns result as a String
 		function largeMultiply(number, times){
 		var mat = new Array();
 			
