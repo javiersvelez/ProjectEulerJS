@@ -1,0 +1,36 @@
+<html>
+	<head>
+	<style>body{font-family:Arial;}</style>
+	</head>
+	<body>
+		<h1>Problem 30</h1>
+	</body>
+	<script>
+        var exponent = 5;
+        var totalSum = 0;
+        
+        for (var i = 2; i < 1000000; i++){
+            var sum = getSumOfPowers(i,exponent);
+            if (sum == i){
+                console.log("Found: " + i);
+                totalSum += sum;
+            }
+        }
+        
+        console.log("The total sum is: " + totalSum);
+        
+        
+        
+        function getSumOfPowers(n, exp){
+            var str = n + "";
+            var res = 0;
+            for (var i = 0; i < str.length; i++){
+                res += Math.pow(str.charAt(i),exp);
+            }
+            return res;
+        }
+        
+		
+	</script>
+</html>
+
